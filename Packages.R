@@ -24,6 +24,7 @@ recursively_install <- function(packages) {
 # List of packages to install
 packages <- c("antiword",
 			  "arules",
+	      	  	  "Amelia",  
 			  "cellranger",
 			  "cluster",
 			  "codetools",
