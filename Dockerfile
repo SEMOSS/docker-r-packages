@@ -1,4 +1,4 @@
-FROM semoss/docker-r:R3.5.2-T9.0.26
+FROM semoss/docker-r:R3.6.2-debian10
 
 LABEL maintainer="semoss@semoss.org"
 
