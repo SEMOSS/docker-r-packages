@@ -58,7 +58,6 @@ packages <- c("antiword",
 	      		  "lpSolve",
 	      		  "lubridate",
 			  "lsa",
-			  "LSAfun",
 			  "Matrix",
 	                  "magrittr",
 			  "memoise",
@@ -120,17 +119,17 @@ packages <- c("antiword",
 	      		  "xml2",
 			  "yaml")
 
-# Install all packages and their dependencies	
+# Install all packages and their dependencies
 recursively_install(packages)
 
 # Install AnomalyDetection from GitHub
 pacman::p_install_gh(c("twitter/AnomalyDetection"))
 
-# Write the install status to disk 
+# Write the install status to disk
 all.packages <- c(packages, "AnomalyDetection")
-write.table(data.frame(sapply(all.packages, function(x) require(x, character.only=TRUE))), 
-			file = "/opt/status/R.csv", 
-			quote = FALSE, 
-			sep = ",", 
-			row.names = TRUE, 
+write.table(data.frame(sapply(all.packages, function(x) require(x, character.only=TRUE))),
+			file = "/home/semoss/R.csv",
+			quote = FALSE,
+			sep = ",",
+			row.names = TRUE,
 			col.names = FALSE)
