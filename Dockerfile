@@ -14,6 +14,7 @@ RUN apt-get update \
 	&& wget https://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz \
 	&& wget https://cran.r-project.org/src/contrib/Archive/SteinerNet/SteinerNet_3.0.1.tar.gz \
 	&& R -e "install.packages('pacman')" \
+	&& Rscript docker-r-packages/ManualPackages.R \
 	&& Rscript docker-r-packages/Packages.R \
 	&& R CMD INSTALL Rserve_1.8-6.tar.gz \
 	&& R CMD INSTALL openNLPmodels.en_1.5-1.tar.gz \
