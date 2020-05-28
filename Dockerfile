@@ -8,6 +8,9 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev \
 	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
+	&& cd docker-r-packages.git \
+	&& git checkout R3.6.2-debian10 \
+	&& cd .. \
 	&& mkdir /opt/status \
 	&& wget --no-check-certificate --output-document=AnomalyDetectionV1.0.0.tar.gz https://github.com/twitter/AnomalyDetection/archive/v1.0.0.tar.gz \
 	&& wget https://www.rforge.net/Rserve/snapshot/Rserve_1.8-6.tar.gz \
