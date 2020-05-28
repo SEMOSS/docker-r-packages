@@ -8,7 +8,7 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev \
 	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
-	&& cd docker-r-packages.git \
+	&& cd docker-r-packages \
 	&& git checkout R3.6.2-debian10 \
 	&& cd .. \
 	&& mkdir /opt/status \
