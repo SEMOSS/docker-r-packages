@@ -25,7 +25,6 @@ RUN apt-get update \
 	&& rm Rserve_1.8-6.tar.gz \
 	&& rm SteinerNet_3.0.1.tar.gz \
 	&& rm openNLPmodels.en_1.5-1.tar.gz \
-	&& rm SteinerNet_3.0.1.tar.gz \
 	&& rm AnomalyDetectionV1.0.0.tar.gz \
 	&& rm -r docker-r-packages \
 	&& apt-get clean all
