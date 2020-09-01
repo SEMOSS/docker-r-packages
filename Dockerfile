@@ -1,4 +1,4 @@
-FROM semoss/docker-r:R3.6.2-debian10
+FROM semoss/docker-r:R3.6.1-debian10.5
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -9,7 +9,7 @@ RUN apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev \
 	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
 	&& cd docker-r-packages \
-	&& git checkout R3.6.2-debian10 \
+	&& git checkout R3.6.1-debian10.5 \
 	&& cd .. \
 	&& mkdir /opt/status \
 	&& wget --no-check-certificate --output-document=AnomalyDetectionV1.0.0.tar.gz https://github.com/twitter/AnomalyDetection/archive/v1.0.0.tar.gz \
