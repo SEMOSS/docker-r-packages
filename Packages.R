@@ -121,7 +121,6 @@ packages <- c("antiword",
 			  "WikidataR",
 			  "WikipediR",
 			  "withr",
-			  "XML",
 	      		  "xml2",
 			  "yaml")
 
