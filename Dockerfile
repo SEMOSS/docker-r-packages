@@ -1,4 +1,6 @@
-FROM semoss/docker-r:R3.6.1-debian10.5
+FROM semoss/docker-r:R3.6.1-debian10.5 as base
+
+FROM semoss/docker-r:R3.6.1-debian10.5-builder as rbuilder
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -28,6 +30,16 @@ RUN apt-get update \
 	&& rm AnomalyDetectionV1.0.0.tar.gz \
 	&& rm -r docker-r-packages \
 	&& apt-get clean all
+	
+FROM base
+
+RUN apt-get update \
+	&& cd ~/ \
+	&& apt-get update \
+	&& apt-get install -y libpoppler-cpp-dev
+	
+COPY --from=rbuilder /usr/lib/R /usr/lib/R
+COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
 
 WORKDIR /opt
 
