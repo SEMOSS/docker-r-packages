@@ -122,7 +122,8 @@ packages <- c("antiword",
 			  "WikipediR",
 			  "withr",
 	      		  "xml2",
-			  "yaml")
+			  "yaml",
+	     		   "sqldf")
 
 # Install all packages and their dependencies	
 recursively_install(packages)
