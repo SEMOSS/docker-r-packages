@@ -123,7 +123,8 @@ packages <- c("antiword",
 			  "XML",
 	      		  "xml2",
 			  "yaml",
-	     		  "sqldf")
+	     		  "sqldf",
+	     		  "naniar")
 
 # Install all packages and their dependencies	
 recursively_install(packages)
