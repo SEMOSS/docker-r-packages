@@ -39,15 +39,15 @@ packages <- c("antiword",
 			  "digest",
 			  "doParallel",
 			  "dplyr",
-	      "e1071",
+	      		  "e1071",
 			  "FactoMineR",
 			  "foreach",
 			  "formatR",
 			  "futile.logger",
 			  "futile.options",
 			  "fuzzyjoin",
-	      "fst",
-	      "glue",
+	      		  "fst",
+	      		  "glue",
 			  "grid",
 			  "HDoutliers",
 			  "httr",
@@ -123,7 +123,8 @@ packages <- c("antiword",
 			  "withr",
 	      		  "xml2",
 			  "yaml",
-	     		   "sqldf")
+	     		  "sqldf",
+	     		  "naniar")
 
 # Install all packages and their dependencies	
 recursively_install(packages)
