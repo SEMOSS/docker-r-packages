@@ -124,7 +124,8 @@ packages <- c("antiword",
 	      		  "xml2",
 			  "yaml",
 	     		  "sqldf",
-	     		  "naniar")
+	     		  "naniar",
+	     	      	  "FSelector")
 
 # Install all packages and their dependencies	
 recursively_install(packages)
