@@ -1,6 +1,14 @@
-FROM semoss/docker-r:R4.1.0-debian10.5 as base
+ARG BASE_REGISTRY=quay.io
+ARG BASE_IMAGE=semoss/docker-r
+ARG BASE_TAG=4.1.0-debian10.5
 
-FROM semoss/docker-r:R4.1.0-debian10.5-builder as rbuilder
+ARG BUILDER_BASE_REGISTRY=quay.io
+ARG BUILDER_BASE_IMAGE=semoss/docker-r
+ARG BUILDER_BASE_TAG=R4.1.0-debian10.5-builder
+
+FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
+
+FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
 
 LABEL maintainer="semoss@semoss.org"
 
