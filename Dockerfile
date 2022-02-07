@@ -1,3 +1,5 @@
+# docker build . -t quay.io/semoss/docker-r-packages:R3.6.2-debian10
+
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
 ARG BASE_TAG=R3.6.2-debian10
