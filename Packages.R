@@ -128,7 +128,9 @@ packages <- c("antiword",
 	  	"FSelector",
 		"visNetwork",
 		"networkD3",
-		"htmlwidgets"
+		"htmlwidgets",
+	        "narnia",
+	        "forecast"
 	     )
 
 # Install all packages and their dependencies	
