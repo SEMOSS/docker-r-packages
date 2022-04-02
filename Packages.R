@@ -128,14 +128,13 @@ packages <- c("antiword",
 	  	"FSelector",
 		"visNetwork",
 		"networkD3",
-		"htmlwidgets"
+		"htmlwidgets",
+	        "forecast",
+	        "naniar"
 	     )
 
 # Install all packages and their dependencies	
 recursively_install(packages)
-
-#install.packages("narnia");
-#install.packages("forecast");
 
 # Install AnomalyDetection from GitHub
 pacman::p_install_gh(c("twitter/AnomalyDetection"))
