@@ -2,11 +2,11 @@
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=R4.1.2-debian11
+ARG BASE_TAG=R4.2.1-debian11
 
 ARG BUILDER_BASE_REGISTRY=quay.io
 ARG BUILDER_BASE_IMAGE=semoss/docker-r
-ARG BUILDER_BASE_TAG=R4.1.2-debian11-builder
+ARG BUILDER_BASE_TAG=R4.2.1-debian11-builder
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
