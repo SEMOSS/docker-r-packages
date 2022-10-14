@@ -21,7 +21,7 @@ RUN apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev gfortran libblas-dev liblapack-dev cmake \
 	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
 	&& cd docker-r-packages \
-	&& git checkout R4.1.2-debian11 \
+	&& git checkout R4.2.1-debian11 \
 	&& cd .. \
 	&& mkdir /opt/status \
 	&& wget --no-check-certificate --output-document=AnomalyDetectionV1.0.0.tar.gz https://github.com/twitter/AnomalyDetection/archive/v1.0.0.tar.gz \
