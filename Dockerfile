@@ -29,8 +29,13 @@ RUN apt-get update \
 	&& wget https://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz \
 	&& wget https://cran.r-project.org/src/contrib/Archive/SteinerNet/SteinerNet_3.0.1.tar.gz \
 	&& wget https://cran.r-project.org/src/contrib/Archive/textreadr/textreadr_1.2.0.tar.gz \
-	&& R -e "install.packages('pacman')" \
-	&& Rscript docker-r-packages/Packages.R \
+	&& R -e "install.packages('pacman')"
+	&& Rscript docker-r-packages/Packages_1.R
+	
+RUN  cd ~/ \
+	&& Rscript docker-r-packages/Packages_2.R
+
+RUN  cd ~/ \
 	&& R -e "install.packages('XML', repos = 'http://www.omegahat.net/R')" \
 	&& R CMD INSTALL Rserve_1.8-11.tar.gz \
 	&& R CMD INSTALL openNLPmodels.en_1.5-1.tar.gz \
