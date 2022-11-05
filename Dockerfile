@@ -29,7 +29,7 @@ RUN apt-get update \
 	&& wget https://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz \
 	&& wget https://cran.r-project.org/src/contrib/Archive/SteinerNet/SteinerNet_3.0.1.tar.gz \
 	&& wget https://cran.r-project.org/src/contrib/Archive/textreadr/textreadr_1.2.0.tar.gz \
-	&& R -e "install.packages('pacman')"
+	&& R -e "install.packages('pacman')" \
 	&& Rscript docker-r-packages/Packages_1.R
 	
 RUN  cd ~/ \
