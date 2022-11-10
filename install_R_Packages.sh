@@ -14,6 +14,7 @@ elif  [[ $arch == arm* ]] || [[ $arch = aarch64 ]]; then
     Rscript Packages_arm.R
     wget https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/openNLPdata_1.5.3-4.tgz
     R CMD INSTALL https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/openNLPdata_1.5.3-4.tgz
+    R -e "install.packages('openNLP')"
 fi
 R -e "install.packages('XML', repos = 'http://www.omegahat.net/R')"
 R CMD INSTALL Rserve_1.8-11.tar.gz
