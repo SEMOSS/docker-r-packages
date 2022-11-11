@@ -17,10 +17,11 @@ elif  [[ $arch == arm* ]] || [[ $arch = aarch64 ]]; then
     wget https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/openNLPdata_1.5.3-4.tgz
     wget https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/RWeka_0.4-44.tgz
     wget https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/FSelector_0.33.tgz
+    wget https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/openNLP_0.2-7.tgz
     R CMD INSTALL RWeka_0.4-44.tgz
     R CMD INSTALL FSelector_0.33.tgz
     R CMD INSTALL openNLPdata_1.5.3-4.tgz
-    R -e "install.packages('openNLP')"
+    R CMD INSTALL openNLP_0.2-7.tgz
 fi
 R -e "install.packages('XML', repos = 'http://www.omegahat.net/R')"
 R CMD INSTALL Rserve_1.8-11.tar.gz
