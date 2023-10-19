@@ -10,7 +10,7 @@ ARG BUILDER_BASE_TAG=ubi8
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
-FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
+# FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -36,14 +36,14 @@ RUN cd /opt/docker-r-packages \
 	&& rm -r docker-r-packages
 	
 	
-FROM base
+# FROM base
 
-RUN apt-get update \
-	&& cd ~/ \
-	&& apt-get update \
-	&& apt-get install -y libpoppler-cpp-dev
+# RUN apt-get update \
+# 	&& cd ~/ \
+# 	&& apt-get update \
+# 	&& apt-get install -y libpoppler-cpp-dev
 	
-COPY --from=rbuilder /opt/R/ /opt/R/
+# COPY --from=rbuilder /opt/R/ /opt/R/
 
 WORKDIR /opt
 
