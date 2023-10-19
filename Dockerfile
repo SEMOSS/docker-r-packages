@@ -21,10 +21,12 @@ RUN cd /opt \
 	&& mkdir /opt/docker-r-packages
 
 COPY poppler /opt/poppler
-RUN yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm
-RUN yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm
-RUN yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm
-RUN yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm
+RUN cd /opt/poppler && \
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm\
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm \
+	&& yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm \ 
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm \
+	&& rm -r /opt/poppler
 
 
 COPY . /opt/docker-r-packages
