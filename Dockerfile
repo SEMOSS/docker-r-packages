@@ -1,4 +1,4 @@
-#docker build . -t quay.io/semoss/docker-r-packages:cuda12-R4.2.1
+#docker build . -t quay.io/semoss/docker-r-packages:ubi8
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
