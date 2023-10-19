@@ -2,11 +2,11 @@
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=cuda12-R4.2.1
+ARG BASE_TAG=ubi8
 
 ARG BUILDER_BASE_REGISTRY=quay.io
 ARG BUILDER_BASE_IMAGE=semoss/docker-r
-ARG BUILDER_BASE_TAG=cuda12-R4.2.1-builder
+ARG BUILDER_BASE_TAG=ubi8
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
@@ -15,11 +15,17 @@ FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuil
 LABEL maintainer="semoss@semoss.org"
 
 # Install R packages
-RUN apt-get update \
-	&& cd /opt \
-	&& apt-get update \
-	&& apt-get install -y libpoppler-cpp-dev gfortran libblas-dev liblapack-dev cmake \
+RUN cd /opt \
+	&& yum -y uupdate \
+	&& yum install -y glibc-langpack-en initscripts procps-ng  binutils curl glibc-devel glibc-headers libcurl-devel libX11 libX11-common kernel-headers openssl-devel libxml2-devel libpng-devel libjpeg-devel cmake fontconfig-devel poppler poppler-utils  \
 	&& mkdir /opt/docker-r-packages
+
+COPY poppler /opt/poppler
+RUN yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm
+RUN yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm
+RUN yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm
+RUN yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm
+
 
 COPY . /opt/docker-r-packages
 
@@ -27,8 +33,7 @@ RUN cd /opt/docker-r-packages \
 	&& chmod +x install_R_Packages.sh \
 	&& /bin/bash install_R_Packages.sh \
 	&& cd .. \
-	&& rm -r docker-r-packages \
-	&& apt-get clean all
+	&& rm -r docker-r-packages
 	
 	
 FROM base
@@ -38,8 +43,7 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev
 	
-COPY --from=rbuilder /usr/lib/R /usr/lib/R
-COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
+COPY --from=rbuilder /opt/R/ /opt/R/
 
 WORKDIR /opt
 
