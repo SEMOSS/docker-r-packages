@@ -22,10 +22,10 @@ RUN cd /opt \
 
 COPY poppler /opt/poppler
 RUN cd /opt/poppler \
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm\
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm \
-	&& yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm \ 
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm \
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm --allowerasing \
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm --allowerasing \
+	&& yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm --allowerasing \ 
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm --allowerasing \
 	&& rm -r /opt/poppler
 
 
