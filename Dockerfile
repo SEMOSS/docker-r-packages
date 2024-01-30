@@ -21,7 +21,7 @@ RUN apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev gfortran libblas-dev liblapack-dev cmake \
 	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
 	&& cd docker-r-packages \
-	&& git checkout R4.2.1-debian11 \
+	&& git checkout debian11 \
 	&& chmod +x install_R_Packages.sh \
 	&& /bin/bash install_R_Packages.sh \
 	&& cd .. \
