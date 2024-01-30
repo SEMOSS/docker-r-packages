@@ -1,12 +1,12 @@
 #docker build . -t quay.io/semoss/docker-r-packages:R4.2.1-debian11
 
-ARG BASE_REGISTRY=quay.io
-ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=R4.2.1-debian11
+ARG BASE_REGISTRY=docker.cfg.deloitte.com
+ARG BASE_IMAGE=ashok/docker-r
+ARG BASE_TAG=debian11
 
-ARG BUILDER_BASE_REGISTRY=quay.io
-ARG BUILDER_BASE_IMAGE=semoss/docker-r
-ARG BUILDER_BASE_TAG=R4.2.1-debian11-builder
+ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
+ARG BUILDER_BASE_IMAGE=ashok/docker-r
+ARG BUILDER_BASE_TAG=debian11-builder
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
@@ -27,15 +27,15 @@ RUN apt-get update \
 	&& cd .. \
 	&& rm -r docker-r-packages \
 	&& apt-get clean all
-	
-	
+
+
 FROM base
 
 RUN apt-get update \
 	&& cd ~/ \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev
-	
+
 COPY --from=rbuilder /usr/lib/R /usr/lib/R
 COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
 
