@@ -4,9 +4,9 @@ ARG BASE_REGISTRY=docker.cfg.deloitte.com
 ARG BASE_IMAGE=ashok/docker-r
 ARG BASE_TAG=ubi8-r
 
-ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
-ARG BUILDER_BASE_IMAGE=ashok/docker-r
-ARG BUILDER_BASE_TAG=ubi8-r
+# ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
+# ARG BUILDER_BASE_IMAGE=ashok/docker-r
+# ARG BUILDER_BASE_TAG=ubi8-r
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
@@ -17,7 +17,7 @@ LABEL maintainer="semoss@semoss.org"
 # Install R packages
 RUN cd /opt \
 	&& yum -y update \
-	&& yum install -y glibc-langpack-en initscripts procps-ng  wget binutils curl glibc-devel glibc-headers libcurl-devel libX11 libX11-common kernel-headers openssl-devel libxml2-devel libpng-devel libjpeg-devel cmake fontconfig-devel  \
+	&& yum install -y glibc-langpack-en initscripts procps-ng  wget binutils curl glibc-devel glibc-headers libcurl-devel libX11 libX11-common kernel-headers openssl-devel libxml2-devel libpng-devel libjpeg-devel cmake fontconfig-devel \
 	&& mkdir /opt/docker-r-packages
 
 COPY poppler /opt/poppler
