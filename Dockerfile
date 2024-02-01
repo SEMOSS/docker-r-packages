@@ -1,12 +1,12 @@
 #docker build . -t quay.io/semoss/docker-r-packages:cuda12-R4.2.1
 
-ARG BASE_REGISTRY=quay.io
-ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=cuda12-R4.2.1
+ARG BASE_REGISTRY=docker.cfg.deloitte.com
+ARG BASE_IMAGE=ashok/docker-r
+ARG BASE_TAG=cuda12
 
-ARG BUILDER_BASE_REGISTRY=quay.io
-ARG BUILDER_BASE_IMAGE=semoss/docker-r
-ARG BUILDER_BASE_TAG=cuda12-R4.2.1-builder
+ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
+ARG BUILDER_BASE_IMAGE=ashok/docker-r
+ARG BUILDER_BASE_TAG=cuda12-builder
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
@@ -29,15 +29,15 @@ RUN cd /opt/docker-r-packages \
 	&& cd .. \
 	&& rm -r docker-r-packages \
 	&& apt-get clean all
-	
-	
+
+
 FROM base
 
 RUN apt-get update \
 	&& cd ~/ \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev
-	
+
 COPY --from=rbuilder /usr/lib/R /usr/lib/R
 COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
 
