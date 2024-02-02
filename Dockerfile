@@ -1,7 +1,7 @@
 #docker build . -t quay.io/semoss/docker-r-packages:R4.2.1-debian11
 
-ARG BASE_REGISTRY=docker.cfg.deloitte.com
-ARG BASE_IMAGE=ashok/docker-r
+ARG BASE_REGISTRY=quay.io
+ARG BASE_IMAGE=semoss/docker-r
 ARG BASE_TAG=debian11
 
 ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
