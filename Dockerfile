@@ -1,8 +1,8 @@
-#docker build . -t quay.io/semoss/docker-r-packages:ubi8
+#docker build . -t quay.io/semoss/docker-r-packages:ubi8-rhel
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=ubi8-r
+ARG BASE_TAG=ubi8-rhel
 
 # ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
 # ARG BUILDER_BASE_IMAGE=ashok/docker-r
