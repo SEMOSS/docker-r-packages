@@ -37,16 +37,6 @@ RUN cd /opt/docker-r-packages \
 	&& cd .. \
 	&& rm -r docker-r-packages
 
-
-# FROM base
-
-# RUN apt-get update \
-# 	&& cd ~/ \
-# 	&& apt-get update \
-# 	&& apt-get install -y libpoppler-cpp-dev
-
-# COPY --from=rbuilder /opt/R/ /opt/R/
-
 WORKDIR /opt
 
 CMD ["bash"]
