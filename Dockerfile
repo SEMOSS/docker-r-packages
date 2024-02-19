@@ -1,12 +1,12 @@
-#docker build . -t quay.io/semoss/docker-r-packages:cuda12-R4.2.1
+#docker build . -t quay.io/semoss/docker-r-packages:cuda12.2
 
-ARG BASE_REGISTRY=docker.cfg.deloitte.com
-ARG BASE_IMAGE=ashok/docker-r
-ARG BASE_TAG=cuda12
+ARG BASE_REGISTRY=quay.io
+ARG BASE_IMAGE=semoss/docker-r
+ARG BASE_TAG=cuda12.2
 
-ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
-ARG BUILDER_BASE_IMAGE=ashok/docker-r
-ARG BUILDER_BASE_TAG=cuda12-builder
+ARG BUILDER_BASE_REGISTRY=quay.io
+ARG BUILDER_BASE_IMAGE=semoss/docker-r
+ARG BUILDER_BASE_TAG=cuda12.2-builder
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
