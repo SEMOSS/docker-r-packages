@@ -4,13 +4,7 @@ ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
 ARG BASE_TAG=ubi8-rhel
 
-# ARG BUILDER_BASE_REGISTRY=docker.cfg.deloitte.com
-# ARG BUILDER_BASE_IMAGE=ashok/docker-r
-# ARG BUILDER_BASE_TAG=ubi8-r
-
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
-
-# FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
 
 LABEL maintainer="semoss@semoss.org"
 
