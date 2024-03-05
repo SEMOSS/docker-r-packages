@@ -2,9 +2,9 @@
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
-ARG BASE_TAG=ubi8-rhel
+ARG BASE_TAG=ubi8-rhel-squashed
 
-FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
+FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as builder
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -16,12 +16,8 @@ RUN cd /opt \
 
 COPY poppler /opt/poppler
 RUN cd /opt/poppler \
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-20.11.0-2.el8.x86_64.rpm --allowerasing \
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-20.11.0-2.el8.x86_64.rpm --allowerasing \
-	&& yum install -y --nogpgcheck /opt/poppler/poppler-devel-20.11.0-2.el8.x86_64.rpm --allowerasing \ 
-	&& yum install -y --nogpgcheck  /opt/poppler/poppler-cpp-devel-20.11.0-2.el8.x86_64.rpm --allowerasing \
+	&& yum install -y --nogpgcheck  /opt/poppler/poppler-*.rpm --allowerasing \
 	&& rm -r /opt/poppler
-
 
 COPY . /opt/docker-r-packages
 
@@ -30,6 +26,15 @@ RUN cd /opt/docker-r-packages \
 	&& /bin/bash install_R_Packages.sh \
 	&& cd .. \
 	&& rm -r docker-r-packages
+
+FROM scratch AS final
+COPY --from=builder / /
+
+ENV R_VERSION=4.2.3 \
+	R_LIBS_SITE=/opt/R/4.2.3/lib/R/library \
+	R_HOME=/opt/R/4.2.3 \
+	RSTUDIO_PANDOC=/usr/lib/R/pandoc-2.17.1.1/bin \
+	PATH=$PATH:$R_HOME/bin:$R_LIBRARY:$RSTUDIO_PANDOC
 
 WORKDIR /opt
 
