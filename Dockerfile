@@ -29,13 +29,6 @@ RUN cd /opt/docker-r-packages \
 
 FROM scratch AS final
 COPY --from=builder / /
-
-ENV R_VERSION=4.2.3 \
-	R_LIBS_SITE=/opt/R/4.2.3/lib/R/library \
-	R_HOME=/opt/R/4.2.3 \
-	RSTUDIO_PANDOC=/usr/lib/R/pandoc-2.17.1.1/bin \
-	PATH=$PATH:$R_HOME/bin:$R_LIBRARY:$RSTUDIO_PANDOC
-
 WORKDIR /opt
 
 CMD ["bash"]
