@@ -1,4 +1,4 @@
-#docker build . -t quay.io/semoss/docker-r-packages:R4.2.1-debian11
+#docker build . -t quay.io/semoss/docker-r-packages:debian11
 
 ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
@@ -29,7 +29,7 @@ RUN apt-get update \
 	&& apt-get clean all
 
 
-FROM base
+FROM base as intermediate
 
 RUN apt-get update \
 	&& cd ~/ \
@@ -39,6 +39,8 @@ RUN apt-get update \
 COPY --from=rbuilder /usr/lib/R /usr/lib/R
 COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
 
+FROM scratch AS final
+COPY --from=intermediate  / /
 WORKDIR /opt
 
 CMD ["bash"]
