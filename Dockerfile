@@ -31,7 +31,7 @@ RUN cd /opt/docker-r-packages \
 	&& apt-get clean all
 
 
-FROM base
+FROM base as intermediate
 
 RUN apt-get update \
 	&& cd ~/ \
@@ -41,6 +41,8 @@ RUN apt-get update \
 COPY --from=rbuilder /usr/lib/R /usr/lib/R
 COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
 
+FROM scratch AS final
+COPY --from=intermediate  / /
 WORKDIR /opt
 
 CMD ["bash"]

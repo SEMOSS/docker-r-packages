@@ -27,6 +27,7 @@ elif  [[ $arch == arm* ]] || [[ $arch = aarch64 ]]; then
     R CMD INSTALL openNLPdata_1.5.3-4.tgz
     R CMD INSTALL openNLP_0.2-7.tgz
 fi
+R -e "install.packages(c('igraph', 'pdftools', 'readxl', 'rvest', 'striprtf', 'textshape', 'XML'), repos = 'http://cran.rstudio.com/')"
 R -e "install.packages('XML', repos = 'http://www.omegahat.net/R')"
 # R CMD INSTALL Rserve_1.8-11.tar.gz
 R CMD INSTALL openNLPmodels.en_1.5-1.tar.gz
