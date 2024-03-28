@@ -10,24 +10,20 @@ ARG BUILDER_BASE_TAG=debian11-builder
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
 
-FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
-
 LABEL maintainer="semoss@semoss.org"
 
 # Install R packages
+COPY . /opt/docker-r-packages
+
 RUN apt-get update \
 	&& cd /opt \
 	&& apt-get update \
-	&& apt-get install -y libpoppler-cpp-dev gfortran libblas-dev liblapack-dev cmake \
-	&& git clone https://github.com/SEMOSS/docker-r-packages.git \
+	&& apt-get install -y gfortran libblas-dev liblapack-dev cmake \
 	&& cd docker-r-packages \
-	&& git checkout debian11 \
 	&& chmod +x install_R_Packages.sh \
 	&& /bin/bash install_R_Packages.sh \
 	&& cd .. \
-	&& rm -r docker-r-packages \
 	&& apt-get clean all
-
 
 FROM base as intermediate
 
@@ -36,10 +32,11 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev
 
-COPY --from=rbuilder /usr/lib/R /usr/lib/R
-COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
+COPY --from=base /usr/lib/R /usr/lib/R
+COPY --from=base /usr/local/lib/R /usr/local/lib/R
 
 FROM scratch AS final
+
 COPY --from=intermediate  / /
 WORKDIR /opt
 
