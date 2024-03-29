@@ -4,13 +4,7 @@ ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
 ARG BASE_TAG=cuda12.2
 
-ARG BUILDER_BASE_REGISTRY=quay.io
-ARG BUILDER_BASE_IMAGE=semoss/docker-r
-ARG BUILDER_BASE_TAG=cuda12.2-builder
-
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
-
-FROM ${BUILDER_BASE_REGISTRY}/${BUILDER_BASE_IMAGE}:${BUILDER_BASE_TAG} as rbuilder
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -38,8 +32,8 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get install -y libpoppler-cpp-dev
 
-COPY --from=rbuilder /usr/lib/R /usr/lib/R
-COPY --from=rbuilder /usr/local/lib/R /usr/local/lib/R
+COPY --from=base /usr/lib/R /usr/lib/R
+COPY --from=base /usr/local/lib/R /usr/local/lib/R
 
 FROM scratch AS final
 COPY --from=intermediate  / /
