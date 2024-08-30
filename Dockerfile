@@ -4,7 +4,7 @@ ARG BASE_REGISTRY=quay.io
 ARG BASE_IMAGE=semoss/docker-r
 ARG BASE_TAG=cuda12.2
 
-FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} as base
+FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG} AS base
 
 LABEL maintainer="semoss@semoss.org"
 
@@ -25,7 +25,7 @@ RUN cd /opt/docker-r-packages \
 	&& apt-get clean all
 
 
-FROM base as intermediate
+FROM base AS intermediate
 
 RUN apt-get update \
 	&& cd ~/ \
