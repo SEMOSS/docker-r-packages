@@ -10,7 +10,7 @@ LABEL maintainer="semoss@semoss.org"
 
 # Install R packages
 RUN cd /opt \
-	&& yum -y update \
+	# && yum -y update \
 	&& yum install -y glibc-langpack-en initscripts procps-ng  wget binutils curl glibc-devel glibc-headers libcurl-devel libX11 libX11-common kernel-headers openssl-devel libxml2-devel libpng-devel libjpeg-devel cmake fontconfig-devel \
 	&& mkdir /opt/docker-r-packages
 
